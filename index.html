@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="arcane-modern">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Anaswara Black | Arcane Scholar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --arcane-gold: #FFE79E;
+            --deep-ebony: #0D0A0B;
+            --celestial-blue: #1A2A42;
+            --blood-crimson: #5E0B15;
+            --parchment: #F3EFE0;
+            --magic-radius: 2rem;
+            --font-arcane: 'Cormorant Garamond', serif;
+            --font-modern: 'Montserrat', sans-serif;
+            --glass-effect: linear-gradient(145deg, 
+                rgba(255,231,158,0.08) 0%,
+                rgba(30,30,30,0.3) 100%
+            );
+            --section-spacing: 8rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at center, 
+                var(--deep-ebony) 0%,
+                var(--celestial-blue) 150%
+            );
+            color: var(--parchment);
+            font-family: var(--font-modern);
+            line-height: 1.8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .arcane-nav {
+            position: fixed;
+            top: -100px;
+            width: 100%;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(13, 10, 11, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,231,158,0.1);
+            transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-visible {
+            top: 0;
+        }
+
+        .nav-logo {
+            font-family: var(--font-arcane);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--arcane-gold);
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-item {
+            font-family: var(--font-modern);
+            color: var(--parchment);
+            text-decoration: none;
+            font-weight: 400;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--arcane-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .astral-hero {
+            height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, 
+                rgba(26, 42, 66, 0.7) 0%,
+                rgba(13, 10, 11, 0.9) 100%
+            );
+        }
+
+        .astral-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.1"/></svg>');
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: var(--font-arcane);
+            font-size: clamp(3rem, 10vw, 5rem);
+            background: linear-gradient(45deg, 
+                var(--arcane-gold) 30%,
+                #ffffff 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--parchment);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .chronicle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: var(--section-spacing) 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .arcane-card {
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: var(--magic-radius);
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .arcane-card:hover {
+            background: rgba(26, 42, 66, 0.4);
+            border-color: rgba(255,231,158,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .arcane-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: var(--magic-radius);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: radial-gradient(circle at var(--x) var(--y), 
+                rgba(255,231,158,0.15) 0%, 
+                transparent 70%);
+            pointer-events: none;
+        }
+
+        .arcane-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-family: var(--font-arcane);
+            font-size: 1.8rem;
+            color: var(--arcane-gold);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .constellation-form {
+            max-width: 600px;
+            margin: var(--section-spacing) auto;
+            padding: 3rem;
+            background: rgba(26, 42, 66, 0.4);
+            border-radius: var(--magic-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,231,158,0.1);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(30,30,30,0.3);
+            border: 1px solid rgba(255,231,158,0.1);
+            color: var(--parchment);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: var(--font-modern);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--arcane-gold);
+            box-shadow: 0 0 15px rgba(255,231,158,0.2);
+        }
+
+        button.form-input {
+            background: linear-gradient(45deg, 
+                var(--arcane-gold) 0%,
+                #ffffff 100%
+            );
+            color: var(--deep-ebony);
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        button.form-input:hover {
+            transform: scale(1.02);
+        }
+
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        .magic-dots {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--arcane-gold);
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-logo {
+                font-size: 1.5rem;
+            }
+
+            .chronicle-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .constellation-form {
+                padding: 2rem;
+                margin: 4rem auto;
+            }
+
+            .arcane-card {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-item {
+                font-size: 0.9rem;
+            }
+        }
+        
+    </style>
+    
+    
+</head>
+<body>
+    <nav class="arcane-nav" id="mainNav">
+        <a href="#" class="nav-logo">Arcana Magister</a>
+        <div class="nav-links">
+            <a href="#chronicles" class="nav-item">Chronicles</a>
+
+            <a href="#contact" class="nav-item">Contact</a>
+            <a href="https://cozyyuukii.github.io/" class="nav-item">Eternal-bond</a>
+        </div>
+    </nav>
+
+    <section class="astral-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Anaswara </h1>
+            <p class="hero-subtitle">Professional Stargazer • Midnight Spellweaver • Nap Enthusiast</p>
+        </div>
+    </section>
+
+    <main>
+        <section id="chronicles" class="chronicle-grid">
+            <article class="arcane-card">
+                    <h3 class="card-title">Hogwarts Pixel & Purr Chronicles</h3>
+                    <ul>
+                        <li><strong>Youngest Code Charmer</strong> – Debugged 100 cursed scripts between cat naps (owl post certified).</li>
+                        <li><strong>Chaos Conjurer (2019–2023)</strong> – Taught kneazles to organize anime watchlists (mostly chronological).</li>
+                        <li><strong>"Caffeinated Grimoire" Author</strong> – Spells include ramen instantanus and latte patronum charm.</li>
+                    </ul>
+                </article>
+                
+                <article class="arcane-card">
+                    <h3 class="card-title">Dumbledore's Naptime Approved</h3>
+                    <ul>
+                        <li><strong>Marauder's Map Streamer</strong> – Found optimal anime buffer zones in vanishing cabinets.</li>
+                        <li><strong>Dreamless Sleep Alchemist</strong> – Brewed 48-hour wakefulness potion (side effects may include accidental animagus transformation).</li>
+                        <li><strong>Time-Turner Binge Master</strong> – onquered 3 series sagas and a coding project before midnight feast.</li>
+                    </ul>
+                </article>
+                
+                <article class="arcane-card">
+                    <h3 class="card-title">Mystifying Mew-sical Triumphs</h3>
+                    <ul>
+                        <li><strong>Founder of Catnap Academy</strong> – Lectures: "Advanced Snackcraft While Asleep 304".</li>
+                        <li><strong>Creator of Purr-fect Portkeys</strong> – Teleports to kitchen without leaving blanket fort.</li>
+                        <li><strong>Keeper of Melodic Relics</strong> – Silences noisy ravens with cursed lo-fi beats.</li>
+                    </ul>
+                </article>
+            </article>
+        </section>
+
+        <section id="contact" class="constellation-form">
+            <h2 class="card-title">Celestial Communication</h2>
+            <form>
+                <input type="text" class="form-input" placeholder="Your Astral Signature" required>
+                <textarea class="form-input" rows="5" placeholder="Inscribe Your Message" required></textarea>
+                <button type="submit" class="form-input">Send via Telepathic Owl</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        class ModernMagic {
+            constructor() {
+                this.initNavigation();
+                this.initSmoothScroll();
+                this.initScrollReveal();
+            }
+
+            initNavigation() {
+                let lastScroll = 0;
+                window.addEventListener('scroll', () => {
+                    const currentScroll = window.pageYOffset;
+                    const nav = document.getElementById('mainNav');
+                    
+                    if (currentScroll > 100) {
+                        nav.classList.add('nav-visible');
+                    } else {
+                        nav.classList.remove('nav-visible');
+                    }
+                    
+                    lastScroll = currentScroll;
+                });
+            }
+
+            initSmoothScroll() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+            }
+
+            initScrollReveal() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = 1;
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.arcane-card, .constellation-form').forEach(el => {
+                    el.style.opacity = 0;
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+                    observer.observe(el);
+                });
+            }
+        }
+
+        function createMagicDots() {
+            const container = document.createElement('div');
+            container.className = 'magic-dots';
+            
+            for(let i = 0; i < 150; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.style.left = `${Math.random() * 100}%`;
+                dot.style.top = `${Math.random() * 100}%`;
+                dot.style.animationDelay = `${Math.random() * 3}s`;
+                container.appendChild(dot);
+            }
+            
+            document.body.appendChild(container);
+        }
+
+        function initCardHover() {
+            document.querySelectorAll('.arcane-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    card.style.setProperty('--x', `${e.clientX - rect.left}px`);
+                    card.style.setProperty('--y', `${e.clientY - rect.top}px`);
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new ModernMagic();
+            createMagicDots();
+            initCardHover();
+        });
+    </script>
+    <div style="text-align: center; padding: 4rem 0 2rem; opacity: 0.4;">
+        <a href="https://cozyyuukii.github.io/" 
+           style="text-decoration: none;
+                  font-family: 'Cormorant Garamond', serif;
+                  color: var(--arcane-gold);
+                  font-size: 0.9rem;
+                  transition: opacity 0.3s ease;">
+             Scrollcraft by Yuukii 
+        </a>
+    </div>
+</body>
+</html>
