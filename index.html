@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Anaswara| Vintage Charm</title>
+    <title>Anaswara Black | Vintage Charm</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa:wght@300;400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
@@ -18,15 +18,17 @@
             --font-body: 'Comfortaa', cursive;
             --font-digital: 'Press Start 2P', cursive;
             --film-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            
+            /* RGB versions for transparency */
+            --dusty-rose-rgb: 182, 141, 64;
+            --vintage-beige-rgb: 244, 235, 208;
         }
 
-        /* Base height setup */
         html, body {
             height: 100%;
             margin: 0;
         }
 
-        /* Animated Background */
         .animated-background {
             position: fixed;
             width: 100vw;
@@ -37,7 +39,6 @@
             background: var(--vintage-beige);
         }
 
-        /* Film Grain Effect */
         body::before {
             content: "";
             position: fixed;
@@ -61,7 +62,6 @@
             position: relative;
         }
 
-        /* Scanlines */
         .scanlines {
             position: fixed;
             top: 0;
@@ -86,10 +86,13 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            background: linear-gradient(0deg, var(--dusty-rose) 0%, var(--vintage-beige) 100%);
+            background: linear-gradient(
+                0deg, 
+                rgba(var(--dusty-rose-rgb), 0.6) 0%, 
+                rgba(var(--vintage-beige-rgb), 0.6) 100%
+            );
             overflow: hidden;
         }
-  
 
         .hero-content {
             text-align: center;
@@ -97,6 +100,8 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-title {
@@ -325,7 +330,6 @@
     </footer>
 
     <script>
-        // Animated background
         const canvas = document.querySelector('.animated-background');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
@@ -339,7 +343,7 @@
                 this.y = Math.random() * height;
                 this.speed = Math.random() * 0.5 + 0.2;
                 this.angle = Math.random() * Math.PI * 2;
-                this.color = `rgba(61,43,31,${Math.random() * 0.2 + 0.05})`;
+                this.color = `rgba(61,43,31,${Math.random() * 0.3 + 0.1})`;
             }
 
             update() {
@@ -382,7 +386,6 @@
             height = canvas.height = window.innerHeight;
         });
 
-        // Scroll animations
         class VintageMagic {
             constructor() {
                 this.initScrollReveal();
