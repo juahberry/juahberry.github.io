@@ -30,20 +30,35 @@
         }
 
         body {
-            background: radial-gradient(circle at center, 
-                var(--deep-ebony) 0%,
-                var(--celestial-blue) 150%
-            );
+            position: relative;
             color: var(--parchment);
             font-family: var(--font-modern);
             line-height: 1.8;
             min-height: 100vh;
             overflow-x: hidden;
+            transform: translate3d(0,0,0);
+            -webkit-transform: translate3d(0,0,0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, 
+                var(--deep-ebony) 0%,
+                var(--celestial-blue) 150%
+            );
+            z-index: -1;
+            transform: translateZ(0);
         }
 
         .arcane-nav {
             position: fixed;
-            top: -100px;
             width: 100%;
             padding: 1.2rem 5%;
             display: flex;
@@ -53,11 +68,12 @@
             backdrop-filter: blur(15px);
             z-index: 1000;
             border-bottom: 1px solid rgba(255,231,158,0.1);
-            transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translate3d(0,-100%,0);
         }
 
         .nav-visible {
-            top: 0;
+            transform: translate3d(0,0,0);
         }
 
         .nav-logo {
@@ -110,6 +126,8 @@
                 rgba(26, 42, 66, 0.7) 0%,
                 rgba(13, 10, 11, 0.9) 100%
             );
+            transform: translate3d(0,0,0);
+            -webkit-transform: translate3d(0,0,0);
         }
 
         .astral-hero::after {
@@ -314,21 +332,69 @@
                 font-size: 0.9rem;
             }
         }
-        
+
+        @media (hover: none) and (pointer: coarse) {
+            .arcane-card::before {
+                display: none;
+            }
+            
+            .arcane-card:hover {
+                transform: none;
+                background: rgba(26, 42, 66, 0.2);
+            }
+        }
     </style>
+        <style>
+            /* Add new social styles under existing .card-title */
+            
+            .social-container {
+                text-align: center;
+                padding: 4rem 0;
+            }
     
+            .social-title {
+                font-family: var(--font-arcane);
+                font-size: 2.5rem;
+                color: var(--arcane-gold);
+                margin-bottom: 2rem;
+            }
     
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 3rem;
+                font-size: 2.5rem;
+            }
+    
+            .social-link {
+                color: var(--parchment);
+                transition: all 0.3s ease;
+                position: relative;
+            }
+    
+            .social-link:hover {
+                color: var(--arcane-gold);
+                transform: translateY(-3px);
+            }
+    
+            .social-link::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: var(--arcane-gold);
+                transition: width 0.3s ease;
+            }
+    
+            .social-link:hover::after {
+                width: 100%;
+            }
+        </style>
 </head>
 <body>
-    <nav class="arcane-nav" id="mainNav">
-        <a href="#" class="nav-logo">Arcana Magister</a>
-        <div class="nav-links">
-            <a href="#chronicles" class="nav-item">Chronicles</a>
-
-            <a href="#contact" class="nav-item">Contact</a>
-            <a href="https://cozyyuukii.github.io/" class="nav-item">Eternal-bond</a>
-        </div>
-    </nav>
+ 
 
     <section class="astral-hero">
         <div class="hero-content">
@@ -340,41 +406,43 @@
     <main>
         <section id="chronicles" class="chronicle-grid">
             <article class="arcane-card">
-                    <h3 class="card-title">Hogwarts Pixel & Purr Chronicles</h3>
-                    <ul>
-                        <li><strong>Youngest Code Charmer</strong> – Debugged 100 cursed scripts between cat naps (owl post certified).</li>
-                        <li><strong>Chaos Conjurer (2019–2023)</strong> – Taught kneazles to organize anime watchlists (mostly chronological).</li>
-                        <li><strong>"Caffeinated Grimoire" Author</strong> – Spells include ramen instantanus and latte patronum charm.</li>
-                    </ul>
-                </article>
-                
-                <article class="arcane-card">
-                    <h3 class="card-title">Dumbledore's Naptime Approved</h3>
-                    <ul>
-                        <li><strong>Marauder's Map Streamer</strong> – Found optimal anime buffer zones in vanishing cabinets.</li>
-                        <li><strong>Dreamless Sleep Alchemist</strong> – Brewed 48-hour wakefulness potion (side effects may include accidental animagus transformation).</li>
-                        <li><strong>Time-Turner Binge Master</strong> – onquered 3 series sagas and a coding project before midnight feast.</li>
-                    </ul>
-                </article>
-                
-                <article class="arcane-card">
-                    <h3 class="card-title">Mystifying Mew-sical Triumphs</h3>
-                    <ul>
-                        <li><strong>Founder of Catnap Academy</strong> – Lectures: "Advanced Snackcraft While Asleep 304".</li>
-                        <li><strong>Creator of Purr-fect Portkeys</strong> – Teleports to kitchen without leaving blanket fort.</li>
-                        <li><strong>Keeper of Melodic Relics</strong> – Silences noisy ravens with cursed lo-fi beats.</li>
-                    </ul>
-                </article>
+                <h3 class="card-title">Hogwarts Pixel & Purr Chronicles</h3>
+                <ul>
+                    <li><strong>Youngest Code Charmer</strong> – Debugged 100 cursed scripts between cat naps (owl post certified).</li>
+                    <li><strong>Chaos Conjurer (2019–2023)</strong> – Taught kneazles to organize anime watchlists (mostly chronological).</li>
+                    <li><strong>"Caffeinated Grimoire" Author</strong> – Spells include ramen instantanus and latte patronum charm.</li>
+                </ul>
+            </article>
+            
+            <article class="arcane-card">
+                <h3 class="card-title">Dumbledore's Naptime Approved</h3>
+                <ul>
+                    <li><strong>Marauder's Map Streamer</strong> – Found optimal anime buffer zones in vanishing cabinets.</li>
+                    <li><strong>Dreamless Sleep Alchemist</strong> – Brewed 48-hour wakefulness potion (side effects may include accidental animagus transformation).</li>
+                    <li><strong>Time-Turner Binge Master</strong> – Conquered 3 series sagas and a coding project before midnight feast.</li>
+                </ul>
+            </article>
+            
+            <article class="arcane-card">
+                <h3 class="card-title">Mystifying Mew-sical Triumphs</h3>
+                <ul>
+                    <li><strong>Founder of Catnap Academy</strong> – Lectures: "Advanced Snackcraft While Asleep 304".</li>
+                    <li><strong>Creator of Purr-fect Portkeys</strong> – Teleports to kitchen without leaving blanket fort.</li>
+                    <li><strong>Keeper of Melodic Relics</strong> – Silences noisy ravens with cursed lo-fi beats.</li>
+                </ul>
             </article>
         </section>
 
-        <section id="contact" class="constellation-form">
-            <h2 class="card-title">Celestial Communication</h2>
-            <form>
-                <input type="text" class="form-input" placeholder="Your Astral Signature" required>
-                <textarea class="form-input" rows="5" placeholder="Inscribe Your Message" required></textarea>
-                <button type="submit" class="form-input">Send via Telepathic Owl</button>
-            </form>
+        <section id="social" class="social-container">
+            <h2 class="social-title">Arcane Connections</h2>
+            <div class="social-links">
+                <a href="https://www.instagram.com/juahberry/" class="social-link" target="_blank" rel="noopener">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://open.spotify.com/user/dphxecr50wajfh4ck2nxchqf4" class="social-link" target="_blank" rel="noopener">
+                    <i class="fab fa-spotify"></i>
+                </a>
+            </div>
         </section>
     </main>
 
@@ -387,18 +455,14 @@
             }
 
             initNavigation() {
-                let lastScroll = 0;
+                let scrollTimeout;
                 window.addEventListener('scroll', () => {
-                    const currentScroll = window.pageYOffset;
-                    const nav = document.getElementById('mainNav');
-                    
-                    if (currentScroll > 100) {
-                        nav.classList.add('nav-visible');
-                    } else {
-                        nav.classList.remove('nav-visible');
-                    }
-                    
-                    lastScroll = currentScroll;
+                    clearTimeout(scrollTimeout);
+                    scrollTimeout = setTimeout(() => {
+                        const currentScroll = window.pageYOffset;
+                        const nav = document.getElementById('mainNav');
+                        nav.style.transform = `translate3d(0,${currentScroll > 100 ? 0 : '-100%'},0)`;
+                    }, 50);
                 });
             }
 
