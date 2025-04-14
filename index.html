@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juah - Professional Sleeper & Cat Gazer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="#home" class="site-title">Juah</a>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#lifelog" class="nav-link">Life Log</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Open Menu" aria-expanded="false">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+    </header>
+
+     <div id="mobile-menu" class="mobile-menu">
+         <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Close Menu">
+             <i class="bi bi-x-lg"></i>
+         </button>
+         <nav>
+             <ul>
+                 <li><a href="#home" class="nav-link mobile-link">Home</a></li>
+                 <li><a href="#about" class="nav-link mobile-link">About</a></li>
+                 <li><a href="#skills" class="nav-link mobile-link">Skills</a></li>
+                 <li><a href="#lifelog" class="nav-link mobile-link">Life Log</a></li>
+                 <li><a href="#contact" class="nav-link mobile-link">Contact</a></li>
+             </ul>
+         </nav>
+     </div>
+
+    <main>
+        <section id="home" class="section page-section home-section">
+            <div class="bubble-background"></div>
+            <div class="container text-center home-content"> <h1 class="home-title">Juah</h1>
+                <h2 class="home-subtitle">Professional Sleeper & Cat Gazer</h2>
+                <p class="home-tagline">Currently accepting applications for nap buddies and snack providers.</p>
+                <a href="#about" class="btn btn-primary btn-ripple">Meet Juah!</a>
+            </div>
+        </section>
+
+        <section id="about" class="section page-section about-section">
+            <div class="container about-container reveal">
+                 <i class="bi bi-stars about-decorative-icon"></i>
+                 <h2>About Juah</h2>
+                 <p class="subtitle">The Official Bio (Mostly True)</p>
+                 <p>
+                    Hi, I’m Juah, a 24/7 nap enthusiast currently based in Thrissur! When I’m not busy mastering the art of deep sleep, you can find me courageously experimenting in the kitchen (results may vary), attempting dances (gravity usually wins), binge-watching entire series like it's an Olympic sport, or negotiating cuddle time with my three adorable, furry overlords (aka dogs).
+                 </p>
+                 <p class="about-quote">
+                    <em>My certified superpowers include locating the world's coziest blankets blindfolded and maintaining intense, unblinking staring contests with nearby cats. Feline judgment immunity pending.</em>
+                 </p>
+                <a href="#contact" class="btn btn-secondary btn-ripple">Say Hi!</a>
+            </div>
+        </section>
+
+        <section id="skills" class="section page-section skills-section">
+            <div class="container">
+                <h2 class="text-center">Juah's Super Skills</h2>
+                <p class="text-center subtitle">World-Class Talent (Sort Of)</p>
+                <div class="skills-grid">
+                    <article class="skill-card reveal">
+                        <i class="bi bi-moon-stars-fill skill-icon"></i>
+                        <h3>Marathon Napping</h3>
+                        <p>Record holder for uninterrupted sleep sessions. Do not disturb before noon. Or 3 PM.</p>
+                    </article>
+                    <article class="skill-card reveal">
+                         <i class="bi bi-fire skill-icon"></i>
+                        <h3>Culinary Alchemy</h3>
+                        <p>Expertly transforming perfectly good recipes into... unique culinary experiences. Blame the oven.</p>
+                    </article>
+                    <article class="skill-card reveal">
+                        <i class="bi bi-collection-play-fill skill-icon"></i>
+                        <h3>Binge-Watching Endurance</h3>
+                        <p>Can consume multiple seasons faster than a speeding bullet. Autoplay is my best friend.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="lifelog" class="section page-section lifelog-section">
+            <div class="container reveal">
+                <h2 class="text-center">Juah's Life Log</h2>
+                <p class="text-center subtitle">Live Updates from the Chaos Zone</p>
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <span>juah@dreamland:~</span>
+                        <div class="terminal-buttons"><span></span><span></span><span></span></div>
+                    </div>
+                    <pre class="terminal-body"><code id="terminal-output"></code><span class="cursor"> </span></pre>
+                    <button id="clear-log-btn" class="btn btn-terminal btn-ripple">Clear Log & Replay</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section page-section contact-section">
+            <div class="container reveal">
+                <h2 class="text-center">Ping Juah!</h2>
+                <p class="text-center subtitle">Drop a Message (Unless I’m Napping)</p>
+                <form id="contact-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" class="contact-form">
+                     <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your Name">
+                        <small class="error-message" id="name-error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                        <small class="error-message" id="email-error"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required minlength="10" placeholder="What's on your mind? (min. 10 characters)"></textarea>
+                        <small class="error-message" id="message-error"></small>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-ripple">Send Message</button>
+                </form>
+                 <div id="form-success" class="form-success-message" style="display: none;">
+                    Message sent! Juah will reply after her nap... eventually. 😴
+                </div>
+                 <div id="form-error" class="form-error-message" style="display: none;">
+                    Oops! Something went wrong. Please try again later.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <h3>Stalk Juah (Nicely)</h3>
+            <p>Find me probably napping or online.</p>
+            <div class="social-links">
+                <a href="https://instagram.com/juahberry" target="_blank" title="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href=" https://discord.com/users/794432842263822386/" target="_blank" title="Discord"><i class="bi bi-discord"></i></a>
+                <a href="https://open.spotify.com/user/0" target="_blank" title="Spotify"><i class="bi bi-spotify"></i></a>
+             </div>
+            <p class="copy-line">© <span id="current-year"></span> Juah’s Dreamland – Powered by Snacks & Naps</p>
+        </div>
+    </footer>
+
+    <button id="scroll-up" class="scroll-up-btn btn-ripple" title="Scroll to top">
+        <i class="bi bi-arrow-up-circle"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
